@@ -5,15 +5,20 @@ import os
 
 os.chdir('C:/Users/hakim/Documents/HF-Python/Chapter3/')
 
-data = open('sketch.txt')
+if os.path.exists('sketch.txt'):
 
-for eachLine in data:
-    try:
-        (role,line_spoken) = eachLine.split(":",1)
-        print(role, end='')
-        print(' said: ', end='')
-        print(line_spoken, end='')
-    except:
-        pass
+    data = open('sketch.txt')
 
-data.close()
+    for eachLine in data:
+        try:
+            (role,line_spoken) = eachLine.split(":",1)
+            print(role, end='')
+            print(' said: ', end='')
+            print(line_spoken, end='')
+        except:
+            pass
+
+    data.close()
+else:
+    print('The data file is missing')
+
