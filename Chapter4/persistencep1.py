@@ -23,19 +23,15 @@ try:
             pass
 
     data.close()
-except IOError:
-    print('The data file is missing')
+except IOError as err:
+    print('The data file is missing' + str(err))
 
 try:
-    man_out     = open('man_data.txt', "w")
-    other_out   = open('other_data.txt', "w")
+    with open('man_data.txt', "w") as man_out:
+        print(man, file=man_out)
+    with open('other_data.txt', "w") as other_out: 
+        print(other, file=other_out)        
 
-    print(man, file=man_out)
-    print(other, file=other_out)
+except IOError as err:
+    print("Couldn't open file" + str(err))
 
-    man_out.close()
-    other_out.close()
-
-except IOError:
-    print("Couldn't open file")
-    
