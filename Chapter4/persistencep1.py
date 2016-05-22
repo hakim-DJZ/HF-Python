@@ -3,8 +3,12 @@ the one speaking and their speach."""
 
 import os
 import hakim_nester
+import pickle
+
+#hsellaoui/Documents/HF-Python/HF-Python
 
 os.chdir('C:/Users/hakim/Documents/HF-Python/Chapter4/')
+#os.chdir('C:/Users/hsellaoui/Documents/HF-Python/HF-Python/Chapter4/')
 
 man     = []
 other   = []
@@ -28,11 +32,24 @@ except IOError as err:
     print('The data file is missing' + str(err))
 
 try:
-    with open('man_data.txt', "w") as man_out:
-        hakim_nester.print_lol(man, 0,0, man_out)
-    with open('other_data.txt', "w") as other_out: 
-        hakim_nester.print_lol(other,0,0, other_out)        
+    with open('man_data.txt', "wb") as man_out:
+        pickle.dump(man, man_out)
+    with open('other_data.txt', "wb") as other_out: 
+        pickle.dump(other, other_out)        
 
-except IOError as err:
+except PickleError as err:
     print("Couldn't open file" + str(err))
 
+"""Test to see if it worked"""
+try:
+    with open('man_data.txt', "rb") as man_out:
+        pickle.load(man_out)
+    with open('other_data.txt', "rb") as other_out: 
+        pickle.load(other_out)        
+
+except pickle.PickleError as perr:
+    print("Couldn't open file" + str(perr))
+
+print(man)
+print("\n\n\nNow other man\n\n\n\n")
+print(other)
