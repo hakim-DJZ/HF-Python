@@ -7,8 +7,8 @@ import pickle
 
 #hsellaoui/Documents/HF-Python/HF-Python
 
-#os.chdir('C:/Users/hakim/Documents/HF-Python/Chapter4/')
-os.chdir('C:/Users/hsellaoui/Documents/HF-Python/HF-Python/Chapter4/')
+os.chdir('C:/Users/hakim/Documents/HF-Python/Chapter4/')
+#os.chdir('C:/Users/hsellaoui/Documents/HF-Python/HF-Python/Chapter4/')
 
 man     = []
 other   = []
@@ -47,8 +47,8 @@ try:
     with open('other_data.txt', "rb") as other_out: 
         pickle.load(other_out)        
 
-except PickleError as err:
-    print("Couldn't open file" + str(err))
+except pickle.PickleError as perr:
+    print("Couldn't open file" + str(perr))
 
 print(man)
 print("\n\n\nNow other man\n\n\n\n")
