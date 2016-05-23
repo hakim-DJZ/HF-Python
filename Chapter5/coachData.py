@@ -3,6 +3,7 @@ std.out to show it worked"""
 
 import os
 import pickle
+import sanitize
 
 #hsellaoui/Documents/HF-Python/HF-Python
 
@@ -19,7 +20,6 @@ mikey = []
 fileNames = ["james.txt", "julie.txt", "sarah.txt", "mikey.txt"]
 
 for file in fileNames:
-    
     try:
         with open(file) as data:
             for eachLine in data:
@@ -38,8 +38,11 @@ for file in fileNames:
     except IOError as err:
         print('The data file is missing' + str(err))
 
-print(sorted(james))
+jamesNew = []
+for time in james:
+    jamesNew.append(sanitize.sanitize(time))
+
+print(sorted(jamesNew))
 print(sorted(julie))
 print(sorted(sarah))
 print(sorted(mikey))
-        
