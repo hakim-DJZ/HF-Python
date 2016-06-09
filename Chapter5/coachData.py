@@ -4,6 +4,7 @@ std.out to show it worked"""
 import os
 import pickle
 from sanitize import sanitizer
+from Coach import get_coach_data
 
 #hsellaoui/Documents/HF-Python/HF-Python
 
@@ -19,42 +20,27 @@ mikey = []
 #List of file names
 fileNames = ["james.txt", "julie.txt", "sarah.txt", "mikey.txt"]
 
-for file in fileNames:
-    try:
-        with open(file) as data:
-            for eachLine in data:
-                try:                   
-                    if   file == "james.txt":                        
-                        james  = eachLine.strip().split(",")
-                    elif file == "julie.txt":
-                        julie = eachLine.strip().split(",")
-                    elif file == "sarah.txt":
-                        sarah = eachLine.strip().split(",")
-                    elif file == "mikey.txt":
-                        mikey = eachLine.strip().split(",")
-                except ValueError:
-                    pass
-                
-    except IOError as err:
-        print('The data file is missing' + str(err))
 
-jamesNew = sorted([ sanitizer(each_t) for each_t in james ])
-julieNew = sorted([ sanitizer(each_t) for each_t in julie ])
-sarahNew = sorted([ sanitizer(each_t) for each_t in sarah ])
-mikeyNew = sorted([ sanitizer(each_t) for each_t in mikey ])
+james = get_coach_data(fileNames[0])
+julie = get_coach_data(fileNames[1])
+sarah = get_coach_data(fileNames[2])
+mikey = get_coach_data(fileNames[3])
+
+#set removes duplicate data, then we sort it and store top three into name[]
+james = sorted( set([ sanitizer(each_t) for each_t in james ]))[0:3]
+julie = sorted( set([ sanitizer(each_t) for each_t in julie ]))[0:3]
+sarah = sorted( set([ sanitizer(each_t) for each_t in sarah ]))[0:3]
+mikey = sorted( set([ sanitizer(each_t) for each_t in mikey ]))[0:3]
+
 
 print("For James \n")
-print(sorted(james))    
-print(sorted(jamesNew))
+print(james)
 
 print("\n\nFor Julie \n")
-print(sorted(julie))
-print(sorted(julieNew))
+print(julie)
 
 print("\n\nFor Sarah \n")
-print(sorted(sarah))
-print(sorted(sarahNew))
+print(sarah)
 
 print("\n\nFor Mikey \n")
-print(sorted(mikey))
-print(sorted(mikeyNew))
+print(mikey)

@@ -1,3 +1,4 @@
+"""sanitizer(string) will replace '-' or ':' for '.'"""
 def sanitizer(time_string):
     if '-' in time_string:
         splitter = '-'       
