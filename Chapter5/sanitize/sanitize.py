@@ -1,4 +1,4 @@
-def sanitize(time_string):
+def sanitizer(time_string):
     if '-' in time_string:
         splitter = '-'       
     elif ':' in time_string:

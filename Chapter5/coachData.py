@@ -3,7 +3,7 @@ std.out to show it worked"""
 
 import os
 import pickle
-import sanitize
+from sanitize import sanitizer
 
 #hsellaoui/Documents/HF-Python/HF-Python
 
@@ -38,11 +38,23 @@ for file in fileNames:
     except IOError as err:
         print('The data file is missing' + str(err))
 
-jamesNew = []
-for time in james:
-    jamesNew.append(sanitize.sanitize(time))
+jamesNew = sorted([ sanitizer(each_t) for each_t in james ])
+julieNew = sorted([ sanitizer(each_t) for each_t in julie ])
+sarahNew = sorted([ sanitizer(each_t) for each_t in sarah ])
+mikeyNew = sorted([ sanitizer(each_t) for each_t in mikey ])
 
+print("For James \n")
+print(sorted(james))    
 print(sorted(jamesNew))
+
+print("\n\nFor Julie \n")
 print(sorted(julie))
+print(sorted(julieNew))
+
+print("\n\nFor Sarah \n")
 print(sorted(sarah))
+print(sorted(sarahNew))
+
+print("\n\nFor Mikey \n")
 print(sorted(mikey))
+print(sorted(mikeyNew))
